@@ -1,0 +1,76 @@
+main {
+  min-height: calc(100vh - 392px);
+}
+
+.footerLogo {
+  width: 80px;
+}
+
+.underWeight {
+  border-left: #3bbbf6 10px solid;
+}
+
+.normalWeight {
+  border-left: #88d54a 10px solid;
+}
+
+.overWeight {
+  border-left: #fa9968 10px solid;
+}
+
+.mildObesity {
+  border-left: #fd973c 10px solid;
+}
+
+.obesity {
+  border-left: #fc6c22 10px solid;
+}
+
+.severeObesity {
+  border-left: #fc191c 10px solid;
+}
+
+.fa-trash-alt:hover {
+  background: black;
+  color: white;
+}
+
+.text-control {
+  width: 128px;
+}
+
+.form-control:focus {
+  color: rgb(226, 78, 78);
+}
+
+.resetBox {
+  display: none;
+  position: absolute;
+  top: -5px;
+  left: -5px;
+}
+
+.custom-reset {
+  width: 160px;
+  height: 160px;
+  border: 10px solid;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.custom-reset button {
+  position: absolute;
+  bottom: 15px;
+  right: 40px;
+  border: 5px solid;
+}
+
+.fa-sync-alt {
+  transition: all 0.3s;
+  &:hover {
+    transform: rotateZ(150deg);
+  }
+}

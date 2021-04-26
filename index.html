@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:title" content="BMI 計算機">
+  <meta property="og:description" content="JavaScript 最終作業">
+  <meta property="og:site_name" content="BMI 計算機">
+  <meta property="og:locale" content="zh_TW">
+  <meta property="og:url" content="https://jayredk.github.io/bmiCalculator/">
+  <title>BMI 計算機</title>
+  <link rel="shortcut icon" href="img/BMICLogo.png" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+    crossorigin="anonymous"/>
+  <link rel="stylesheet" href="css/all.min.css">
+</head>
+<body>
+  <header class="bg-primary">
+    <div class="container d-flex justify-content-around align-items-center py-5">
+      <img src="img/BMICLogo.png" alt="">
+      <div>
+        <div class="form-group">
+          <label for="height" class="text-secondary">身高 cm</label>
+          <input type="number" min="1" name="身高" id="height" placeholder="請輸入身高" class="form-control bg-gray border-secondary text-white rounded-pill text-lg">
+        </div>
+        <div class="form-group">
+          <label for="weight" class="text-secondary">體重 kg</label>
+          <input type="number" min="1" name="體重" id="weight" placeholder="請輸入體重" class="form-control bg-gray border-secondary text-white rounded-pill text-lg">
+        </div>
+      </div>
+      <div class="position-relative">
+        <input type="button" id="result" class="btn btn-lg btn-secondary rounded-circle text-3l px-4 py-5" value="看結果">
+        <div class="resetBox align-items-center bg-primary">
+          <!-- <div class="custom-reset flex-shrink-0 mr-3 px-4 py-4">
+            <p class="text-2l my-0">123</p>
+            <span>BMI</span>
+            <button id="reset" class="btn rounded-circle p-0"><i class="fas fa-sync-alt text-lg p-2"></i></button>
+          </div>
+          <p class="flex-shrink-0 text-3l">理想</p> -->
+        </div>
+      </div>
+    </div>
+    
+  </header>
+  <main class="bg-grayExLight pb-5">
+    <div class="container text-center">
+      <h1 class="py-5">BMI 紀錄</h1>
+      <ul id="list" class="list-unstyled">
+        <li class="pb-5 mb-5">這裡還沒有資料，快來計算你的 BMI 吧！</li>
+      </ul>
+    </div>
+  </main>
+  <footer class="bg-secondary text-center py-3">
+    <img class="footerLogo" src="img/BMICLogo_d.svg" alt="footer">
+  </footer>
+  <script src="js/all.js"></script>
+</body>
+</html>
