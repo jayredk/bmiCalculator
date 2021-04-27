@@ -109,7 +109,6 @@ function render(bmiRecords) {
 }
 
 function init() {
-  console.log(bmiRecords.length);
   if (bmiRecords.length != 0) {
     bmiRecords = JSON.parse(localStorage.getItem('bmiRecords'));
     render(bmiRecords);
