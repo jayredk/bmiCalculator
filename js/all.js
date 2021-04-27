@@ -39,7 +39,7 @@ function bmiCalculator() {
       userData.style = 'severeObesity';
     }
 
-    bmiRecords.push(userData);
+    bmiRecords.unshift(userData);
     localStorage.setItem('bmiRecords', JSON.stringify(bmiRecords));
     resetInput(userData);
     render(bmiRecords);
@@ -109,8 +109,11 @@ function render(bmiRecords) {
 }
 
 function init() {
-  bmiRecords = JSON.parse(localStorage.getItem('bmiRecords'));
-  render(bmiRecords);
+  console.log(bmiRecords.length);
+  if (bmiRecords.length != 0) {
+    bmiRecords = JSON.parse(localStorage.getItem('bmiRecords'));
+    render(bmiRecords);
+  }
 }
 
-init()
+init();
