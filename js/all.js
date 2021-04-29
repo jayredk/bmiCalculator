@@ -6,6 +6,7 @@ const resetBox = document.querySelector('.resetBox');
 let bmiRecords = [];
 
 result.addEventListener('click', bmiCalculator);
+list.addEventListener('click', deleteList);
 
 
 function bmiCalculator() {
@@ -13,9 +14,9 @@ function bmiCalculator() {
   let userWeight = weight.value;
   let bmi = (userWeight / ((userHeight / 100) * (userHeight / 100))).toFixed(2);
   let userData = {
-      height: userHeight,
-      weight: userWeight,
-      BMI: bmi,
+    height: userHeight,
+    weight: userWeight,
+    bmi,
   };
 
   if (userHeight > 0 && userWeight > 0) {
@@ -42,7 +43,7 @@ function bmiCalculator() {
     bmiRecords.unshift(userData);
     localStorage.setItem('bmiRecords', JSON.stringify(bmiRecords));
     resetInput(userData);
-    render(bmiRecords);
+    render();
   } else if (userHeight === '' || userWeight === '') {
     alert('輸入欄位不可爲空');
   } else {
@@ -52,7 +53,7 @@ function bmiCalculator() {
 
 function resetInput(userData) {
   resetBox.innerHTML = `<div class="custom-reset flex-shrink-0 border-${userData.style} text-${userData.style} mr-3 px-4 py-4">
-            <p class="text-3l my-0">${userData.BMI}</p>
+            <p class="text-3l my-0">${userData.bmi}</p>
             <span>BMI</span>
             <button id="reset" class="btn text-primary bg-${userData.style} border-primary rounded-circle p-0"><i class="fas fa-sync-alt text-lg p-2"></i></button>
           </div>
@@ -66,52 +67,50 @@ function resetInput(userData) {
   })
 }
 
-function deleteList() {
-  let deleteButton = document.querySelectorAll('.fa-trash-alt');
-  for(let i = 0; i < bmiRecords.length; i++) {
-    deleteButton[i].addEventListener('click', () => {
-    bmiRecords.splice(i, 1);
-    JSON.stringify(localStorage.setItem('bmiRecords', bmiRecords));
-    render(bmiRecords);
-    })
+function deleteList(e) {
+  if (e.target.nodeName !== 'I') {return;}
+  let num = e.target.parentNode.dataset.num;
+  bmiRecords.splice(num, 1);
+  if (bmiRecords.length !== 0) {
+    localStorage.setItem('bmiRecords', JSON.stringify(bmiRecords));
+    render();
+  } else {
+    list.innerHTML = `<li class="pb-5 mb-5">這裡還沒有資料，快來計算你的 BMI 吧！</li>`;
+    localStorage.clear();
   }
 }
 function deleteAll() {
   let deleteAll = document.getElementById('deleteAll');
   deleteAll.addEventListener('click', () => {
-    list.innerHTML = "";
-    bmiRecords = [];
-    localStorage.clear();
     list.innerHTML = `<li class="pb-5 mb-5">這裡還沒有資料，快來計算你的 BMI 吧！</li>`;
+    bmiRecords.length = 0;
+    localStorage.clear();
   })
 }
 
-function render(bmiRecords) {
+function render() {
   let today = new Date;
   let recordsLength = bmiRecords.length;
   let str = '';
   let i = 0;
   for (i; i < recordsLength; i++){
-    str += `<li class="d-flex justify-content-around align-items-center position-relative bg-white ${bmiRecords[i].style} mb-4">
+    str += `<li data-num="${i}" class="d-flex justify-content-around align-items-center position-relative bg-white ${bmiRecords[i].style} mb-4">
           <h2 class="text-control font-weight-normal py-3 mb-0">${bmiRecords[i].status}</h3>
-          <p class="text-2l py-3 mb-0"><span class="align-middle mr-2 text-base">BMI</span>${bmiRecords[i].BMI}</p>
+          <p class="text-2l py-3 mb-0"><span class="align-middle mr-2 text-base">BMI</span>${bmiRecords[i].bmi}</p>
           <p class="text-2l py-3 mb-0"><span class="align-middle mr-2 text-base">weight</span>${bmiRecords[i].weight}kg</p>
           <p class="text-2l py-3 mb-0"><span class="align-middle mr-2 text-base">height</span>${bmiRecords[i].height}cm</p>
-          <p class="py-3 mb-0">0${today.getMonth()+1}-${today.getDate()}-${today.getFullYear()}</p><i class="btn fas fa-trash-alt"></i>
+          <p class="py-3 mb-0">${(today.getMonth() + 1 >= 10) ? today.getMonth() + 1 : '0' + (today.getMonth() + 1)}-${today.getDate()}-${today.getFullYear()}</p><i class="btn fas fa-trash-alt"></i>
         </li>`;
   }
-  if (recordsLength != 0) {
-    str += `<button id="deleteAll" class="btn btn-grayExLight text-lg"><i class="far fa-times-circle text-xl align-text-bottom mr-2"></i>清除全部</button>`
-  }
+  str += `<button id="deleteAll" class="btn btn-grayExLight text-lg"><i class="far fa-times-circle text-xl align-text-bottom mr-2"></i>清除全部</button>`;
   list.innerHTML = str;
-  if (recordsLength != 0) {deleteAll();}
-  deleteList();
+  deleteAll();
 }
 
 function init() {
-  if (bmiRecords.length != 0) {
+  if (localStorage.length !== 0) {
     bmiRecords = JSON.parse(localStorage.getItem('bmiRecords'));
-    render(bmiRecords);
+    render();
   }
 }
 
