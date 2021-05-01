@@ -103,7 +103,7 @@ function render() {
           <p class="text-2l py-3 mb-0"><span class="align-middle mr-2 text-base">BMI</span>${bmiRecords[i].bmi}</p>
           <p class="text-2l py-3 mb-0"><span class="align-middle mr-2 text-base">weight</span>${bmiRecords[i].weight}kg</p>
           <p class="text-2l py-3 mb-0"><span class="align-middle mr-2 text-base">height</span>${bmiRecords[i].height}cm</p>
-          <p class="py-3 mb-0">${(today.getMonth() + 1 >= 10) ? today.getMonth() + 1 : '0' + (today.getMonth() + 1)}-${today.getDate()}-${today.getFullYear()}</p><i class="btn fas fa-trash-alt"></i>
+          <p class="py-3 mb-0">${(today.getMonth() + 1 >= 10) ? today.getMonth() + 1 : '0' + (today.getMonth() + 1)}-${today.getDate() >= 10 ? today.getDate() : '0' + today.getDate()}-${today.getFullYear()}</p><i class="btn fas fa-trash-alt"></i>
         </li>`;
   }
   str += `<button id="deleteAll" class="btn btn-grayExLight text-lg"><i class="far fa-times-circle text-xl align-text-bottom mr-2"></i>清除全部</button>`;
