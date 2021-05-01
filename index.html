@@ -20,7 +20,7 @@
   <header class="bg-primary">
     <div class="container d-flex justify-content-around align-items-center py-5">
       <img src="img/BMICLogo.png" alt="logo">
-      <div>
+      <div class="position-relative">
         <div class="form-group">
           <label for="height" class="text-secondary">身高 cm</label>
           <input type="number" min="1" name="身高" id="height" placeholder="請輸入身高" class="form-control bg-gray border-secondary text-white rounded-pill text-lg">
@@ -29,6 +29,7 @@
           <label for="weight" class="text-secondary">體重 kg</label>
           <input type="number" min="1" name="體重" id="weight" placeholder="請輸入體重" class="form-control bg-gray border-secondary text-white rounded-pill text-lg">
         </div>
+        <span id="alertMsg" class="alertMsg text-lg"></span>
       </div>
       <div class="position-relative">
         <input type="button" id="result" class="btn btn-lg btn-secondary rounded-circle text-3l px-4 py-5" value="看結果">

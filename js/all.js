@@ -3,6 +3,7 @@ const weight = document.getElementById('weight');
 const result = document.getElementById('result');
 const list = document.getElementById('list');
 const resetBox = document.querySelector('.resetBox');
+const alertMsg = document.getElementById('alertMsg');
 let bmiRecords = [];
 
 result.addEventListener('click', bmiCalculator);
@@ -44,10 +45,13 @@ function bmiCalculator() {
     localStorage.setItem('bmiRecords', JSON.stringify(bmiRecords));
     resetInput(userData);
     render();
+    alertMsg.classList.remove('active');
   } else if (userHeight === '' || userWeight === '') {
-    alert('輸入欄位不可爲空');
+    alertMsg.textContent = '輸入欄位不可爲空！！';
+    alertMsg.classList.add('active');
   } else {
-    alert('請輸入正確身高體重');
+    alertMsg.textContent = '請輸入正確身高體重！！';
+    alertMsg.classList.add('active');
   }
 }
 

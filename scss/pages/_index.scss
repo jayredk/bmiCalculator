@@ -2,6 +2,18 @@ main {
   min-height: calc(100vh - 392px);
 }
 
+.alertMsg {
+  display: none;
+  color: #f72528;
+  position: absolute;
+  bottom: -30px;
+  left: 35px;
+}
+
+.active {
+  display: block;
+}
+
 .footerLogo {
   width: 80px;
 }
